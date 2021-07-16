@@ -127,6 +127,9 @@ header div > p {
         margin: 8px;
         width: unset;
     }
+    header {
+        font-size: 0.8rem;
+    }
 }
 
 /* For Tablets */
