@@ -137,14 +137,36 @@ header > a > p {
     margin-block-end: 0;
 }
 
+header span {
+    font-size: 1.2rem;
+    line-height: 1rem;
+    margin-left: 0.6rem;
+}
+
+header h2 > span {
+    display: none;
+}
+
 /* For Mobile */
 @media screen and (max-width: 480px) {
     body {
         margin: 8px;
         width: unset;
     }
-    header {
+    header,
+    header span {
         font-size: 0.8rem;
+    }
+    header h2 > span {
+        display: unset;
+        font-size: 0.9rem !important;
+        line-height: 1.8rem;
+        margin-left: 0.6rem;
+        margin-top: 0.1rem;
+        vertical-align: top;
+    }
+    header p > span {
+        display: none;
     }
 }
 
