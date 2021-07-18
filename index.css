@@ -107,7 +107,8 @@ header div h2 {
 }
 
 #content h2,
-footer h2 {
+footer h2,
+footer h3 {
     margin-block-end: 0;
 }
 
@@ -115,7 +116,13 @@ footer h2 {
     width: 100%;
 }
 
-header div > p {
+header > a {
+    text-decoration: none !important;
+    color: var(--element1, #eeeeee) !important;
+}
+
+header > a > h2,
+header > a > p {
     margin-block-start: 0;
     margin-block-end: 0;
 }
