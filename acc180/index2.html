@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            :root {
+                --color-bg: #ffffff;
+                --color-text: #1a1a1a;
+                --color-link: #0000ee;
+                --color-link-visited: #551a8b;
+                --color-focus: #d97706;
+            }
+
+            body {
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    "Segoe UI",
+                    Roboto,
+                    sans-serif;
+                font-size: 1.125rem;
+                line-height: 1.6;
+                color: var(--color-text);
+                background-color: var(--color-bg);
+                max-width: 70ch;
+                margin: 2rem auto;
+                padding: 0 1rem;
+            }
+
+            a {
+                color: var(--color-link);
+            }
+
+            a:visited {
+                color: var(--color-link-visited);
+            }
+
+            a:focus-visible {
+                outline: 3px solid var(--color-focus);
+                outline-offset: 2px;
+            }
+
+            .prep {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 2rem;
+            }
+
+            @media (max-width: 600px) {
+                .prep {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            .allergen-list {
+                list-style: none;
+                padding: 0;
+                flex-wrap: wrap;
+                display: flex;
+                gap: 0.75rem;
+            }
+            .allergen-list li {
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+            }
+            .allergen-list img {
+                height: 32px;
+            }
+
+            dl {
+                display: grid;
+                grid-template-columns: max-content 1fr;
+                gap: 0.5rem 1rem;
+                align-items: center;
+            }
+
+            dt {
+                font-weight: bold;
+            }
+
+            dd {
+                margin: 0;
+            }
+
+            input[type="checkbox"] {
+                accent-color: #595959;
+            }
+
+            li:has(input[type="checkbox"]) {
+                padding-left: 0.5rem;
+            }
+
+            li:has(input[type="checkbox"]:checked) {
+                color: #595959;
+                background-color: #f5f5f5;
+                border-right: 3px solid #666;
+            }
+            #steps li:has(:focus-visible),
+            #steps li:hover {
+                background-color: #fff8e1;
+                font-weight: 600;
+            }
+        </style>
+        <title>Caesar salad — Recipe Site</title>
+    </head>
+    <body>
+        <header>
+            <h1>Caesar salad</h1>
+            <p id="description">
+                A recipe for classic Caesar salad with homemade dressing. Crisp
+                romaine lettuce, crunchy croutons and plenty of Parmesan, all
+                brought together with a punchy anchovy dressing.
+            </p>
+            <img
+                src="images/ceasar.png"
+                alt="Caesar salad with romaine lettuce, croutons and shaved Parmesan in a large white bowl"
+                width="300"
+                height="300"
+            />
+            <dl id="recipe-info">
+                <dt>Prep time</dt>
+                <dd><time datetime="PT15M">15 minutes</time></dd>
+                <dt>Cooking time</dt>
+                <dd><time datetime="PT0M">None</time></dd>
+                <dt>Total time</dt>
+                <dd><time datetime="PT15M">15 minutes</time></dd>
+                <dt>Dietary</dt>
+                <dd>
+                    Not suitable for vegetarian, vegan, or gluten-free diets
+                </dd>
+                <dt>Allergens</dt>
+                <dd>
+                    <ul class="allergen-list">
+                        <li>
+                            <img
+                                src="images/allergen-egg.png"
+                                alt
+                                title
+                                role="presentation"
+                            />
+                            Eggs
+                        </li>
+                        <li>
+                            <img
+                                src="images/allergen-fish.png"
+                                alt
+                                title
+                                role="presentation"
+                            />
+                            Fish
+                        </li>
+                        <li>
+                            <img
+                                src="images/allergen-milk.png"
+                                alt
+                                title
+                                role="presentation"
+                            />
+                            Milk
+                        </li>
+                        <li>
+                            <img src="images/allergen-gluten.png" alt="" />
+                            Gluten
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+
+            <nav aria-label="On this page">
+                <ul>
+                    <li>
+                        <a href="#ingredients-heading">Ingredients</a>
+                    </li>
+                    <li><a href="#equipment-heading">Equipment</a></li>
+                    <li><a href="#steps-heading">Steps</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <article>
+                <div class="prep">
+                    <section aria-labelledby="ingredients-heading">
+                        <h2 id="ingredients-heading">Ingredients</h2>
+
+                        <section aria-labelledby="dressing-heading">
+                            <h3 id="dressing-heading">Dressing</h3>
+                            <ul>
+                                <li><data value="1">1</data> garlic clove</li>
+                                <li>
+                                    <data value="2">2</data> anchovy fillets
+                                </li>
+                                <li>
+                                    <data value="1">1</data>
+                                    <abbr title="teaspoon">tsp</abbr> Dijon
+                                    mustard
+                                </li>
+                                <li>
+                                    <data value="1">1</data>
+                                    <abbr title="tablespoon">tbsp</abbr> lemon
+                                    juice
+                                </li>
+                                <li>
+                                    <data value="1">1</data>
+                                    <abbr title="teaspoon">tsp</abbr>
+                                    Worcestershire sauce
+                                </li>
+                                <li>
+                                    <data value="3">3</data>
+                                    <abbr title="tablespoons">tbsp</abbr>
+                                    mayonnaise
+                                </li>
+                                <li>
+                                    <data value="2">2</data>
+                                    <abbr title="tablespoons">tbsp</abbr> olive
+                                    oil
+                                </li>
+                                <li>Salt and black pepper to taste</li>
+                            </ul>
+                        </section>
+
+                        <section aria-labelledby="salad-heading">
+                            <h3 id="salad-heading">Salad</h3>
+                            <ul>
+                                <li>
+                                    <data value="2">2</data> large romaine
+                                    lettuce heads
+                                </li>
+                                <li>
+                                    <data value="80">80</data>
+                                    <abbr title="grams">g</abbr> Parmesan
+                                </li>
+                                <li>
+                                    <data value="150">150</data>
+                                    <abbr title="grams">g</abbr> croutons
+                                </li>
+                            </ul>
+                        </section>
+                    </section>
+
+                    <section aria-labelledby="equipment-heading" tabindex="-1">
+                        <h2 id="equipment-heading">Equipment</h2>
+                        <ul>
+                            <li>Large mixing bowl</li>
+                            <li>Whisk</li>
+                            <li>Knife and cutting board</li>
+                            <li>Cheese grater</li>
+                        </ul>
+                    </section>
+                </div>
+
+                <section id="steps" aria-labelledby="steps-heading">
+                    <h2 id="steps-heading">Steps</h2>
+                    <p>
+                        Tick off each step as you complete it to keep track of
+                        your progress. Reloading the page clears all ticks.
+                    </p>
+
+                    <section
+                        aria-labelledby="dressing-steps-heading"
+                        tabindex="-1"
+                    >
+                        <h3 id="dressing-steps-heading">Dressing</h3>
+                        <ol>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Cut the garlic into very small pieces.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Finely chop the anchovies.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Whisk together garlic, anchovies, mustard,
+                                    lemon juice and Worcestershire sauce.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Add the mayonnaise and stir to combine.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Whisk in olive oil until smooth.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Add salt and pepper to taste.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+
+                                    Set the dressing aside while preparing the
+                                    salad.
+                                </label>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section
+                        aria-labelledby="salad-steps-heading"
+                        tabindex="-1"
+                    >
+                        <h3 id="salad-steps-heading">Salad</h3>
+                        <ol>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Roughly chop the romaine lettuce.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Finely grate the Parmesan.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Place chopped romaine in a large bowl.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Add <data value="3">3</data>
+                                    <abbr title="tablespoons">tbsp</abbr> of
+                                    dressing and mix until leaves are evenly
+                                    coated.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Add croutons and half the Parmesan (<data
+                                        value="40"
+                                        >40</data
+                                    >
+                                    <abbr title="grams">g</abbr>).</label
+                                >
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Gently mix all ingredients in the bowl.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Top with remaining Parmesan (<data
+                                        value="40"
+                                        >40</data
+                                    >
+                                    <abbr title="grams">g</abbr>). Serve
+                                    immediately.
+                                </label>
+                            </li>
+                        </ol>
+                    </section>
+                </section>
+            </article>
+        </main>
+    </body>
+</html>
