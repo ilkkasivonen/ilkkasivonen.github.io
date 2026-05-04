@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Informed by https://dev.to/frontend_jedi/creating-web-accessibility-meta-tags-1pcp-->
+        <meta
+            name="description"
+            content="A hearty slow-cooked beef stew with root vegetables. Deeply flavoured and satisfying."
+        />
+        <link rel="stylesheet" href="styles.css" />
+        <script src="script.js" defer></script>
+        <title>Beef Stew | Recipe Site</title>
+    </head>
+    <body>
+        <nav aria-label="Breadcrumb">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <!-- leaving this empty, but this is how I see the navigation hierarchy would work if hundreds of recipes-->
+                <li>Mains</li>
+                <li aria-current="page">Beef Stew</li>
+            </ol>
+        </nav>
+        <main>
+            <h1>Beef Stew</h1>
+            <nav aria-label="On this page">
+                <p>
+                    On this page:
+                    <a href="#recipe-info">Recipe details</a>,
+                    <a href="#servings-section">Servings</a>,
+                    <a href="#ingredients-heading">Ingredients</a>, and
+                    <a href="#steps-heading">Steps</a>.
+                </p>
+            </nav>
+            <header>
+                <p id="description">
+                    A hearty slow-cooked beef stew with root vegetables, deeply
+                    flavoured and satisfying. Beef chuck is browned, then
+                    simmered slowly with red wine, stock and herbs until tender,
+                    with carrots, potatoes, parsnips and mushrooms added in
+                    stages.
+                </p>
+                <img
+                    src="images/stew.png"
+                    alt="Beef stew with chunks of beef, vegetables, and a rich broth in a large bowl"
+                    width="300"
+                    height="300"
+                />
+                <dl id="recipe-info" tabindex="-1">
+                    <dt>Prep time</dt>
+                    <dd><time datetime="PT30M">30 minutes</time></dd>
+                    <dt>Cooking time</dt>
+                    <dd><time datetime="PT3H">3 hours</time></dd>
+                    <dt>Total time</dt>
+                    <dd><time datetime="PT3H30M">3 hours 30 minutes</time></dd>
+                    <dt>Dietary</dt>
+                    <dd>
+                        Not suitable for vegetarian, vegan, or gluten-free diets
+                    </dd>
+                    <dt>Allergens</dt>
+                    <dd>
+                        <!-- Allergen icons adapted from 
+                            Allergen icon set by Lia Arambum from
+                            https://www.vecteezy.com/vector-art/343354-allergen-icons-set 
+                        -->
+                        <ul class="allergen-list">
+                            <li>
+                                <img
+                                    src="images/allergen-gluten.png"
+                                    alt
+                                    title
+                                    role="presentation"
+                                />
+                                Gluten
+                            </li>
+                            <li>
+                                <img
+                                    src="images/allergen-sulphites.png"
+                                    alt
+                                    title
+                                    role="presentation"
+                                />
+                                Sulphites
+                            </li>
+                        </ul>
+                    </dd>
+
+                    <dt>Equipment</dt>
+                    <dd>
+                        Large heavy-bottomed pot with lid, knife and cutting
+                        board, paper towels, wooden spoon
+                    </dd>
+                </dl>
+            </header>
+            <article>
+                <p id="servings-section" tabindex="-1">
+                    <label>
+                        Servings:
+                        <input
+                            type="number"
+                            id="servings"
+                            value="6"
+                            data-base="6"
+                            min="1"
+                            max="20"
+                            step="1"
+                        />
+                    </label>
+                    Change the number to set the serving size and recalculate
+                    the ingredients — currently
+                    <span id="current-servings">6</span> servings (original: 6).
+                </p>
+                <section aria-labelledby="ingredients-heading">
+                    <h2 id="ingredients-heading" tabindex="-1">Ingredients</h2>
+
+                    <ul>
+                        <li>
+                            <data value="1.2">1.2</data>
+                            <abbr title="kilograms">kg</abbr> beef chuck, cut
+                            into 4 cm cubes
+                        </li>
+                        <li>
+                            <data value="2">2</data>
+                            <abbr title="tablespoons">tbsp</abbr> vegetable oil
+                        </li>
+                        <li><data value="1">1</data> large onion, diced</li>
+                        <li><data value="3">3</data> cloves garlic, minced</li>
+                        <li>
+                            <data value="3">3</data>
+                            <abbr title="tablespoons">tbsp</abbr> tomato paste
+                        </li>
+                        <li>
+                            <data value="2">2</data>
+                            <abbr title="tablespoons">tbsp</abbr> plain flour
+                        </li>
+                        <li>
+                            <data value="250">250</data>
+                            <abbr title="millilitres">ml</abbr> red wine
+                        </li>
+                        <li>
+                            <data value="700">700</data>
+                            <abbr title="millilitres">ml</abbr> beef stock
+                        </li>
+                        <li><data value="2">2</data> bay leaves</li>
+                        <li>
+                            <data value="1">1</data>
+                            <abbr title="teaspoon">tsp</abbr> dried thyme
+                        </li>
+                        <li>
+                            <data value="3">3</data> large carrots, cut into
+                            chunks
+                        </li>
+                        <li>
+                            <data value="3">3</data> medium potatoes, peeled and
+                            quartered
+                        </li>
+                        <li>
+                            <data value="2">2</data> parsnips, cut into chunks
+                        </li>
+                        <li>
+                            <data value="200">200</data>
+                            <abbr title="grams">g</abbr> mushrooms, halved
+                        </li>
+                        <li>Salt and black pepper to taste</li>
+                    </ul>
+                </section>
+
+                <section id="steps" aria-labelledby="steps-heading">
+                    <h2 id="steps-heading" tabindex="-1">Steps</h2>
+                    <p>
+                        Tick off each step as you complete it to keep track of
+                        your progress. Reloading the page clears all ticks.
+                    </p>
+
+                    <ol>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Pat beef dry with paper towels.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Season the beef generously with salt and pepper.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Heat oil in a large heavy-bottomed pot over high
+                                heat.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Brown the beef in batches — do not crowd the
+                                pan. Each batch takes about 3–4 minutes.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Set the browned beef aside.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Reduce heat to medium. Add the onion to the same
+                                pot and cook, stirring, for 5 minutes until
+                                softened.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Add garlic and tomato paste. Cook for 2 minutes,
+                                stirring constantly.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Sprinkle flour over the onion mixture. Stir well
+                                and cook for 1 minute.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Pour in the red wine.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Scrape up any browned bits from the bottom of
+                                the pot.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Let the wine bubble for 2 minutes.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Return the beef to the pot.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Add stock, bay leaves, and thyme.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Bring to a boil.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Reduce heat to low, cover, and simmer for
+                                <!-- 
+                                    Would be tempting to use datetime with all time related instructions 
+                                    but in reality this would be next to impossible to achieve with recipe editor.
+                                    I think this would be a case for AI analysis of large recipe datasets
+                                -->
+                                <time datetime="PT1H30M">1 hour 30 minutes</time
+                                >.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Add carrots, potatoes, and parsnips. Stir
+                                gently.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Cover and cook for another 45 minutes.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Add the mushrooms.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Cook uncovered for a final 15 minutes, until
+                                vegetables are tender and sauce has thickened
+                                slightly.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Remove the bay leaves.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Taste and adjust seasoning.
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="checkbox" />
+                                Serve hot with crusty bread or over mashed
+                                potatoes.
+                            </label>
+                        </li>
+                    </ol>
+                </section>
+            </article>
+        </main>
+    </body>
+</html>

@@ -1,9 +1,26 @@
+/* 
+    I had something else for link colors in place, but learned that the standard - or at least standard like - 
+    colors are important for accessibility.
+*/
 :root {
     --color-bg: #ffffff;
     --color-text: #1a1a1a;
     --color-link: #0000ee;
     --color-link-visited: #551a8b;
     --color-focus: #d97706;
+}
+
+nav[aria-label="Breadcrumb"] ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+nav[aria-label="Breadcrumb"] li:not(:last-child)::after {
+    content: " › ";
+    margin: 0 0.25em;
 }
 
 body {
@@ -35,19 +52,19 @@ a:focus-visible {
     outline-offset: 2px;
 }
 
-/*
-            .prep {
-                display: grid;
-                grid-template-columns: 2fr 1fr;
-                gap: 2rem;
-            }
-            */
-
-@media (max-width: 600px) {
+/* Early experiment I abandoned, after adding the scaling feature
     .prep {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+    }     
+
+    @media (max-width: 600px) {
+        .prep {
+            grid-template-columns: 1fr;
+        }
     }
-}
+*/
 
 .allergen-list {
     list-style: none;
@@ -80,6 +97,10 @@ dd {
     margin: 0;
 }
 
+/* 
+following list styling is probably debatable. it does fulfill the requirement 
+for focus indication but would require testing with users 
+*/
 input[type="checkbox"] {
     accent-color: #595959;
 }

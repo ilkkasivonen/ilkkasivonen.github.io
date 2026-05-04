@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- 
+                The list in following description is a lie, I did not add this many recipes, but since this is an 
+                exercise emulating the real world, I think it\´s fine. 
+        -->
+        <meta
+            name="description"
+            content="A small collection of recipes — salads, mains, baking, and desserts. Each recipe includes adjustable serving sizes and step-by-step checkable instructions."
+        />
+        <link rel="stylesheet" href="styles.css" />
+        <script src="search.js" defer></script>
+        <title>Recipe Site</title>
+    </head>
+    <body>
+        <!-- Landing page, thus no navigation-->
+        <main>
+            <h1>Recipes</h1>
+            <p>
+                A small collection of recipes covering salads, mains, baking,
+                and desserts. Each recipe lets you adjust the serving size and
+                check off each step as you go.
+            </p>
+
+            <!-- this was the main feature I wanted to implement -->
+            <!-- further comments on why I decided to use this style instead of a combobox + go button pattern are in the writeup-->
+            <form role="search" aria-labelledby="search-heading">
+                <h2 id="search-heading">Search recipes</h2>
+                <label for="recipe-search">
+                    Type to filter recipes by name or description
+                </label>
+                <input
+                    type="search"
+                    id="recipe-search"
+                    name="q"
+                    autocomplete="off"
+                />
+            </form>
+
+            <!-- aria-live polite was completely new feature for me -->
+            <p id="search-status" aria-live="polite" role="status"></p>
+
+            <section aria-labelledby="recipes-heading">
+                <h2 id="recipes-heading">All recipes</h2>
+                <ul id="recipe-list">
+                    <li>
+                        <a href="caesar-salad.html">Caesar salad</a>
+                        — a quick lunch with crisp romaine, croutons, and a
+                        punchy anchovy dressing
+                    </li>
+                    <li>
+                        <a href="beef-stew.html">Beef stew</a>
+                        — slow-cooked beef with root vegetables, deeply
+                        flavoured and satisfying
+                    </li>
+                    <li>
+                        <a href="croissants.html">Croissants</a>
+                        — buttery, flaky French pastries made by laminating
+                        dough over a weekend
+                    </li>
+                    <li>
+                        <a href="ramen.html">Ramen</a>
+                        — a weeknight ramen with a rich broth, soft-boiled eggs,
+                        and fresh toppings
+                    </li>
+                </ul>
+
+                <!-- no matches -->
+                <p id="no-results" hidden>
+                    No recipes match your search. Try a different word.
+                </p>
+            </section>
+        </main>
+    </body>
+</html>

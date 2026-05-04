@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Informed by https://dev.to/frontend_jedi/creating-web-accessibility-meta-tags-1pcp-->
+        <meta
+            name="description"
+            content="A weeknight ramen with rich broth, soft-boiled eggs and fresh toppings. Components are prepared in parallel and assembled at the end."
+        />
+        <link rel="stylesheet" href="styles.css" />
+        <script src="script.js" defer></script>
+        <title>Ramen | Recipe Site</title>
+    </head>
+    <body>
+        <nav aria-label="Breadcrumb">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <li>Mains</li>
+                <li aria-current="page">Ramen</li>
+            </ol>
+        </nav>
+        <main>
+            <!-- Challenge with ramen -recipe: unlike the other recipes, the components are not strictly sequential.
+                 Broth, eggs, noodles and toppings are all prepared in parallel and brought together at the end.
+                 I added a short timing-plan paragraph at the start of the steps section to make this explicit,
+                 since a screen-reader user can't see the parallel structure visually. -->
+            <h1>Ramen</h1>
+            <nav aria-label="On this page">
+                <p>
+                    On this page:
+                    <a href="#recipe-info">Recipe details</a>,
+                    <a href="#servings-section">Servings</a>,
+                    <a href="#ingredients-heading">Ingredients</a>, and
+                    <a href="#steps-heading">Steps</a>.
+                </p>
+            </nav>
+            <header>
+                <p id="description">
+                    A weeknight ramen with a rich, savoury broth, soft-boiled
+                    eggs with jammy yolks, springy noodles and fresh toppings.
+                    The broth, eggs, noodles and toppings are prepared in
+                    parallel and brought together at the end, so timing matters
+                    more than in a stew or salad.
+                </p>
+                <img
+                    src="images/bowl.png"
+                    alt="A deep white bowl of ramen with a soft-boiled egg, nori, spring onions and a rich brown broth"
+                    width="300"
+                    height="300"
+                />
+                <dl id="recipe-info" tabindex="-1">
+                    <dt>Prep time</dt>
+                    <dd><time datetime="PT15M">15 minutes</time></dd>
+                    <dt>Cooking time</dt>
+                    <dd><time datetime="PT30M">30 minutes</time></dd>
+                    <dt>Total time</dt>
+                    <dd><time datetime="PT45M">45 minutes</time></dd>
+                    <dt>Dietary</dt>
+                    <dd>
+                        Not suitable for vegetarian, vegan, or gluten-free diets
+                    </dd>
+                    <dt>Allergens</dt>
+                    <dd>
+                        <!-- Allergen icons adapted from 
+                            Allergen icon set by Lia Arambum from
+                            https://www.vecteezy.com/vector-art/343354-allergen-icons-set 
+                        -->
+                        <ul class="allergen-list">
+                            <li>
+                                <img
+                                    src="images/allergen-egg.png"
+                                    alt
+                                    title
+                                    role="presentation"
+                                />
+                                Eggs
+                            </li>
+                            <li>
+                                <img
+                                    src="images/allergen-gluten.png"
+                                    alt
+                                    title
+                                    role="presentation"
+                                />
+                                Gluten
+                            </li>
+                            <li>
+                                <img
+                                    src="images/allergen-soy.png"
+                                    alt
+                                    title
+                                    role="presentation"
+                                />
+                                Soy
+                            </li>
+                        </ul>
+                    </dd>
+
+                    <dt>Equipment</dt>
+                    <dd>
+                        Large saucepan for broth, medium saucepan for eggs,
+                        second medium saucepan for noodles, slotted spoon, knife
+                        and cutting board, ladle, two deep serving bowls
+                    </dd>
+                </dl>
+            </header>
+            <article>
+                <p id="servings-section" tabindex="-1">
+                    <label>
+                        Servings:
+                        <input
+                            type="number"
+                            id="servings"
+                            value="2"
+                            data-base="2"
+                            min="1"
+                            max="20"
+                            step="1"
+                        />
+                    </label>
+                    Change the number to set the serving size and recalculate
+                    the ingredients — currently
+                    <span id="current-servings">2</span> servings (original: 2).
+                </p>
+                <section aria-labelledby="ingredients-heading">
+                    <h2 id="ingredients-heading" tabindex="-1">Ingredients</h2>
+
+                    <section aria-labelledby="broth-ingredients-heading">
+                        <h3 id="broth-ingredients-heading">Broth</h3>
+                        <ul>
+                            <li>
+                                <data value="800">800</data>
+                                <abbr title="millilitres">ml</abbr> chicken
+                                stock
+                            </li>
+                            <li>
+                                <data value="2">2</data>
+                                <abbr title="tablespoons">tbsp</abbr> soy sauce
+                            </li>
+                            <li>
+                                <data value="1">1</data>
+                                <abbr title="tablespoon">tbsp</abbr> miso paste
+                            </li>
+                            <li>
+                                <data value="1">1</data>
+                                <abbr title="teaspoon">tsp</abbr> sesame oil
+                            </li>
+                            <li>
+                                <data value="2">2</data> cloves garlic, finely
+                                chopped
+                            </li>
+                            <li>
+                                <data value="1">1</data> thumb-sized piece of
+                                ginger, finely chopped
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section aria-labelledby="eggs-ingredients-heading">
+                        <h3 id="eggs-ingredients-heading">Soft-boiled eggs</h3>
+                        <ul>
+                            <li><data value="2">2</data> large eggs</li>
+                        </ul>
+                    </section>
+
+                    <section aria-labelledby="noodles-ingredients-heading">
+                        <h3 id="noodles-ingredients-heading">Noodles</h3>
+                        <ul>
+                            <li>
+                                <data value="200">200</data>
+                                <abbr title="grams">g</abbr> fresh ramen
+                                noodles, or <data value="150">150</data>
+                                <abbr title="grams">g</abbr> dried
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section aria-labelledby="toppings-ingredients-heading">
+                        <h3 id="toppings-ingredients-heading">Toppings</h3>
+                        <ul>
+                            <li><data value="2">2</data> sheets of nori</li>
+                            <li>
+                                <data value="2">2</data> spring onions, thinly
+                                sliced
+                            </li>
+                            <li>
+                                <data value="1">1</data>
+                                <abbr title="teaspoon">tsp</abbr> toasted sesame
+                                seeds
+                            </li>
+                            <li>Chilli oil to taste (optional)</li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="steps" aria-labelledby="steps-heading">
+                    <h2 id="steps-heading" tabindex="-1">Steps</h2>
+                    <p>
+                        Tick off each step as you complete it to keep track of
+                        your progress. Reloading the page clears all ticks.
+                    </p>
+                    <!-- The timing plan is the main accessibility addition for this recipe.
+                         Sighted users could probably infer the parallel structure from skimming, 
+                         but a screen-reader user reading sequentially has no other cue that
+                         the eggs and noodles can be cooked while the broth simmers. -->
+                    <section aria-labelledby="timing-plan-heading">
+                        <h3 id="timing-plan-heading">Timing plan</h3>
+                        <p>
+                            The four components — broth, eggs, noodles and
+                            toppings — overlap in time. A workable order is:
+                            <ol>
+                                <li>Start the broth first so it has time to develop;</li>
+                                <li>Once the broth is simmering, start the eggs and prepare the toppings;</li>
+                                <li>Cook the noodles last, so they go straight from the pot into the bowl.</li>
+                            </ol>
+                            The steps below are grouped by component, but the sections do
+                            not need to be completed in order.
+                        </p>
+                    </section>
+
+                    <section aria-labelledby="broth-steps-heading">
+                        <h3 id="broth-steps-heading">Broth</h3>
+                        <ol>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Heat the sesame oil in a large saucepan over
+                                    medium heat.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Add the garlic and ginger and cook,
+                                    stirring, for 1 minute until fragrant.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Pour in the stock and bring to a gentle
+                                    simmer.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Stir in the soy sauce and miso paste until
+                                    the miso has dissolved.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Keep the broth at a low simmer while you
+                                    prepare the other components.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Taste the broth before serving and adjust
+                                    with more soy sauce if needed.
+                                </label>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section aria-labelledby="eggs-steps-heading">
+                        <h3 id="eggs-steps-heading">Soft-boiled eggs</h3>
+                        <ol>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Bring a medium saucepan of water to a
+                                    rolling boil.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Lower the eggs gently into the water with a
+                                    slotted spoon.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Cook for exactly
+                                    <time datetime="PT6M30S"
+                                        >6 minutes 30 seconds</time
+                                    >
+                                    for jammy yolks.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Transfer the eggs to a bowl of cold water to
+                                    stop the cooking.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Once the eggs are cool enough to handle,
+                                    peel them and cut each in half lengthwise.
+                                </label>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section aria-labelledby="noodles-steps-heading">
+                        <h3 id="noodles-steps-heading">Noodles</h3>
+                        <ol>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Bring a second medium saucepan of water to a
+                                    rolling boil. Do not salt the water — the
+                                    broth provides the salt.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Add the noodles and cook according to the
+                                    packet — usually 2 minutes for fresh, 4
+                                    minutes for dried.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Drain the noodles and rinse briefly under
+                                    hot water to remove excess starch.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Divide the noodles between the two serving
+                                    bowls straight away.
+                                </label>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section aria-labelledby="assembly-steps-heading">
+                        <h3 id="assembly-steps-heading">Assembly</h3>
+                        <ol>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Ladle the hot broth over the noodles in each
+                                    bowl.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Place two egg halves on top of each bowl,
+                                    yolks facing up.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Add a sheet of nori to the side of each
+                                    bowl.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Scatter the spring onions and sesame seeds
+                                    over the top.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Add a drizzle of chilli oil if using. Serve
+                                    immediately.
+                                </label>
+                            </li>
+                        </ol>
+                    </section>
+                </section>
+            </article>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Informed by https://dev.to/frontend_jedi/creating-web-accessibility-meta-tags-1pcp-->
+        <meta
+            name="description"
+            content="Buttery, flaky French croissants made from laminated dough. A weekend project that rewards patience with bakery-quality pastries."
+        />
+        <link rel="stylesheet" href="styles.css" />
+        <script src="script.js" defer></script>
+        <title>Croissants | Recipe Site</title>
+    </head>
+    <body>
+        <nav aria-label="Breadcrumb">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <!-- leaving this empty, but this is how I see the navigation hierarchy would work if hundreds of recipes-->
+                <li>Baking</li>
+                <li aria-current="page">Croissants</li>
+            </ol>
+        </nav>
+        <main>
+            <h1>Croissants</h1>
+            <nav aria-label="On this page">
+                <p>
+                    On this page:
+                    <a href="#recipe-info">Recipe details</a>,
+                    <a href="#servings-section">Servings</a>,
+                    <a href="#ingredients-heading">Ingredients</a>, and
+                    <a href="#steps-heading">Steps</a>.
+                </p>
+            </nav>
+            <header>
+                <p id="description">
+                    Buttery, flaky French croissants made from laminated dough.
+                    The dough is mixed, chilled, then folded around a slab of
+                    butter and rolled out repeatedly to create dozens of
+                    paper-thin layers. A weekend project that rewards patience
+                    with bakery-quality pastries.
+                </p>
+                <img
+                    src="images/croissant.png"
+                    alt="Buttery, flaky French croissants on a plate."
+                    width="300"
+                    height="300"
+                />
+                <dl id="recipe-info" tabindex="-1">
+                    <dt>Prep time</dt>
+                    <dd><time datetime="PT45M">45 minutes</time></dd>
+                    <dt>Cooking time</dt>
+                    <dd><time datetime="PT20M">20 minutes</time></dd>
+                    <dt>Total time</dt>
+                    <dd>
+                        <time datetime="PT13H">13 hours</time>
+                        <!-- 
+                            This additional detail is only included in this recipe, but if I was to design a more general template, 
+                            it should be included as an option. 
+                         -->
+                        <small>
+                            (includes overnight chilling — active time is about
+                            <time datetime="PT1H">1 hour</time>)</small
+                        >
+                    </dd>
+                    <dt>Dietary</dt>
+                    <dd>
+                        Not suitable for vegan, dairy-free, or gluten-free diets
+                    </dd>
+                    <dt>Allergens</dt>
+                    <dd>
+                        <!-- Allergen icons adapted from 
+                            Allergen icon set by Lia Arambum from
+                            https://www.vecteezy.com/vector-art/343354-allergen-icons-set 
+                        -->
+                        <ul class="allergen-list">
+                            <li>
+                                <img
+                                    src="images/allergen-egg.png"
+                                    alt
+                                    title
+                                    role="presentation"
+                                />
+                                Eggs
+                            </li>
+                            <li>
+                                <img
+                                    src="images/allergen-milk.png"
+                                    alt
+                                    title
+                                    role="presentation"
+                                />
+                                Milk
+                            </li>
+                            <li>
+                                <img
+                                    src="images/allergen-gluten.png"
+                                    alt
+                                    title
+                                    role="presentation"
+                                />
+                                Gluten
+                            </li>
+                        </ul>
+                    </dd>
+
+                    <dt>Equipment</dt>
+                    <dd>
+                        Stand mixer with dough hook (or large bowl), rolling
+                        pin, ruler, sharp knife or pizza wheel, baking trays,
+                        parchment paper, pastry brush, plastic wrap
+                    </dd>
+                </dl>
+            </header>
+            <article>
+                <p id="servings-section" tabindex="-1">
+                    <label>
+                        <!-- Another departure of the original recipe template, with since "servings" doesn't really 
+                         translate to "makes" in context of baking. This would be a requirement for a more general template.
+                         also the serving size scaling requires more careful thought, since baking is closer to chemistry
+                        -->
+                        Makes:
+                        <input
+                            type="number"
+                            id="servings"
+                            value="12"
+                            data-base="12"
+                            min="6"
+                            max="36"
+                            step="6"
+                        />
+                    </label>
+                    Change the number to set how many croissants the recipe
+                    makes — currently
+                    <span id="current-servings">12</span> (original: 12).
+                </p>
+                <section aria-labelledby="ingredients-heading">
+                    <h2 id="ingredients-heading">Ingredients</h2>
+
+                    <section aria-labelledby="dough-heading">
+                        <h3 id="dough-heading">Dough</h3>
+                        <ul>
+                            <li>
+                                <data value="500">500</data>
+                                <abbr title="grams">g</abbr> strong white bread
+                                flour, plus extra for dusting
+                            </li>
+                            <li>
+                                <data value="10">10</data>
+                                <abbr title="grams">g</abbr> fine salt
+                            </li>
+                            <li>
+                                <data value="80">80</data>
+                                <abbr title="grams">g</abbr> caster sugar
+                            </li>
+                            <li>
+                                <data value="10">10</data>
+                                <abbr title="grams">g</abbr> instant yeast
+                            </li>
+                            <li>
+                                <data value="300">300</data>
+                                <abbr title="millilitres">ml</abbr> cold whole
+                                milk
+                            </li>
+                            <li>
+                                <data value="40">40</data>
+                                <abbr title="grams">g</abbr> unsalted butter,
+                                softened
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section aria-labelledby="lamination-heading">
+                        <h3 id="lamination-heading">Lamination</h3>
+                        <ul>
+                            <li>
+                                <data value="280">280</data>
+                                <abbr title="grams">g</abbr> cold unsalted
+                                butter, high-fat European-style if possible
+                            </li>
+                        </ul>
+                    </section>
+
+                    <section aria-labelledby="shaping-baking-heading">
+                        <h3 id="shaping-baking-heading">
+                            Shaping &amp; baking
+                        </h3>
+                        <ul>
+                            <li>
+                                <data value="1">1</data> large egg (for egg
+                                wash)
+                            </li>
+                            <li>
+                                <data value="1">1</data>
+                                <abbr title="tablespoon">tbsp</abbr> milk (for
+                                egg wash)
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="steps" aria-labelledby="steps-heading">
+                    <h2 id="steps-heading" tabindex="-1">Steps</h2>
+                    <p>
+                        Tick off each step as you complete it to keep track of
+                        your progress. Reloading the page clears all ticks.
+                    </p>
+                    <section aria-labelledby="dough-steps-heading">
+                        <h3 id="dough-steps-heading">Dough</h3>
+                        <ol>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    In a large bowl, whisk together flour, salt,
+                                    sugar, and yeast.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Add the cold milk and softened butter to the
+                                    dry ingredients.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Mix until a rough dough forms, then knead
+                                    for <data value="5">5</data> minutes until
+                                    smooth.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Shape the dough into a rectangle about
+                                    <data value="20">20</data> ×
+                                    <data value="15">15</data> cm and wrap
+                                    tightly in plastic wrap.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Refrigerate for at least
+                                    <data value="1">1</data> hour, or overnight.
+                                </label>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section
+                        aria-labelledby="lamination-steps-heading"
+                        tabindex="-1"
+                    >
+                        <h3 id="lamination-steps-heading">Lamination</h3>
+                        <ol>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Place the cold butter between two sheets of
+                                    parchment paper.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Pound and roll the butter into a rectangle
+                                    about <data value="18">18</data> ×
+                                    <data value="13">13</data> cm.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Refrigerate the butter block until needed.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Roll the chilled dough into a rectangle
+                                    about <data value="36">36</data> ×
+                                    <data value="15">15</data> cm.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Place the butter block on one half of the
+                                    dough and fold the other half over it. Press
+                                    the edges to seal.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Roll the dough into a long rectangle about
+                                    <data value="60">60</data> ×
+                                    <data value="20">20</data> cm.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Fold one third over the middle, then fold
+                                    the opposite third on top — like folding a
+                                    letter. Wrap and chill for
+                                    <data value="30">30</data> minutes.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Repeat the rolling and letter-folding. Wrap
+                                    and chill for
+                                    <data value="30">30</data> minutes.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Repeat the rolling and letter-folding once
+                                    more.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Wrap and chill for at least
+                                    <data value="1">1</data> hour, or overnight
+                                    for best flavour.
+                                </label>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section aria-labelledby="shaping-baking-steps-heading">
+                        <h3 id="shaping-baking-steps-heading">
+                            Shaping &amp; baking
+                        </h3>
+                        <ol>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    On a lightly floured surface, roll the dough
+                                    into a long rectangle about
+                                    <data value="50">50</data> ×
+                                    <data value="25">25</data> cm and 3–4 mm
+                                    thick.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Trim the edges straight and cut the
+                                    rectangle lengthwise into two long strips.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Cut each strip into triangles with bases of
+                                    about <data value="10">10</data> cm.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Make a small slit at the centre of each
+                                    triangle's base.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Stretch each triangle slightly, then roll
+                                    from the base toward the tip, tucking the
+                                    tip underneath. Curve the ends inward into a
+                                    crescent.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Place shaped croissants on parchment-lined
+                                    baking trays, well spaced. Cover loosely and
+                                    let proof at room temperature for 2–3 hours,
+                                    until visibly puffy and jiggly when the tray
+                                    is gently shaken.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Preheat the oven to
+                                    <data value="200">200</data> °C.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Beat the egg with milk and brush gently over
+                                    each croissant — avoid the cut layered
+                                    edges. Bake for 18–20 minutes, until deep
+                                    golden brown.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Transfer to a wire rack and cool for at
+                                    least <data value="15">15</data> minutes
+                                    before eating.
+                                </label>
+                            </li>
+                        </ol>
+                    </section>
+                </section>
+            </article>
+        </main>
+    </body>
+</html>

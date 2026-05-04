@@ -1,26 +1,39 @@
 const servingsInput = document.getElementById("servings");
-const baseServings = 4;
+const baseServings = parseInt(servingsInput.dataset.base, 10);
 
 const dataElements = document.querySelectorAll("data[value]");
-dataElements.forEach((el) => {
-    el.dataset.base = el.getAttribute("value");
+
+dataElements.forEach((element) => {
+    element.dataset.base = element.getAttribute("value");
 });
 
-function updateQuantities() {
-    const multiplier = servingsInput.value / baseServings;
+const formatQuantity = (quantity) => {
+    if (quantity < 1) {
+        return quantity.toFixed(2).replace(/\.?0+$/, "");
+    }
+    if (quantity < 10) {
+        return quantity.toFixed(1).replace(/\.0$/, "");
+    }
+    return Math.round(quantity).toString();
+};
+
+const updateQuantities = () => {
+    const numberOfServings = parseInt(servingsInput.value, 10);
+
+    if (isNaN(numberOfServings) || numberOfServings < 1) {
+        return;
+    }
+
+    const multiplier = numberOfServings / baseServings;
+
+    dataElements.forEach((element) => {
+        const base = parseFloat(element.dataset.base);
+        const scaled = base * multiplier;
+        element.textContent = formatQuantity(scaled);
+    });
+
     document.getElementById("current-servings").textContent =
         servingsInput.value;
-    dataElements.forEach((el) => {
-        const base = parseFloat(el.dataset.base);
-        const scaled = base * multiplier;
-        el.textContent = formatQuantity(scaled);
-    });
-}
-
-function formatQuantity(n) {
-    if (n < 1) return n.toFixed(2).replace(/\.?0+$/, "");
-    if (n < 10) return n.toFixed(1).replace(/\.0$/, "");
-    return Math.round(n).toString();
-}
+};
 
 servingsInput.addEventListener("input", updateQuantities);

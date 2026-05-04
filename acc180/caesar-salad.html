@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Informed by https://dev.to/frontend_jedi/creating-web-accessibility-meta-tags-1pcp-->
+        <meta
+            name="description"
+            content="A recipe for classic Caesar salad with homemade dressing. Crisp romaine lettuce, crunchy croutons and plenty of Parmesan, all brought together with a punchy anchovy dressing."
+        />
+        <link rel="stylesheet" href="styles.css" />
+        <script src="script.js" defer></script>
+        <title>Caesar salad | Recipe Site</title>
+    </head>
+    <body>
+        <nav aria-label="Breadcrumb">
+            <ol>
+                <li><a href="index.html">Home</a></li>
+                <!-- leaving this empty, but this is how I see the navigation hierarchy would work if hundreds of recipes-->
+                <li>Salads</li>
+                <li aria-current="page">Caesar salad</li>
+            </ol>
+        </nav>
+        <main>
+            <!-- Took some thought to structure the recipe so that it would be easy to follow. I especially tested with
+             macOs's VoiceOver and keyboard navigation -->
+            <h1>Caesar salad</h1>
+            <nav aria-label="On this page">
+                <p>
+                    On this page:
+                    <a href="#recipe-info">Recipe details</a>,
+                    <a href="#servings-section">Servings</a>,
+                    <a href="#ingredients-heading">Ingredients</a>, and
+                    <a href="#steps-heading">Steps</a>.
+                </p>
+            </nav>
+            <header>
+                <p id="description">
+                    A recipe for classic Caesar salad with homemade dressing.
+                    Crisp romaine lettuce, crunchy croutons and plenty of
+                    Parmesan, all brought together with a punchy anchovy
+                    dressing.
+                </p>
+                <img
+                    src="images/ceasar.png"
+                    alt="Caesar salad with romaine lettuce, croutons and shaved Parmesan in a large white bowl"
+                    width="300"
+                    height="300"
+                />
+                <dl id="recipe-info" tabindex="-1">
+                    <dt>Prep time</dt>
+                    <dd><time datetime="PT15M">15 minutes</time></dd>
+                    <dt>Cooking time</dt>
+                    <dd><time datetime="PT0M">None</time></dd>
+                    <dt>Total time</dt>
+                    <dd><time datetime="PT15M">15 minutes</time></dd>
+                    <dt>Dietary</dt>
+                    <dd>
+                        Not suitable for vegetarian, vegan, or gluten-free diets
+                    </dd>
+                    <dt>Allergens</dt>
+                    <dd>
+                        <!-- Allergen icons adapted from 
+                            Allergen icon set by Lia Arambum from
+                            https://www.vecteezy.com/vector-art/343354-allergen-icons-set 
+                        -->
+                        <!-- Accessibility guideline indicates that decorative images should have empty alt attributes. 
+                         I also needed to add the empty title attribute as this was something 
+                         https://freeaccessibilitychecker.skynettechnologies.com/
+                         brought up.
+                        -->
+                        <ul class="allergen-list">
+                            <li>
+                                <img
+                                    src="images/allergen-egg.png"
+                                    alt
+                                    title
+                                    role="presentation"
+                                />
+                                Eggs
+                            </li>
+                            <li>
+                                <img
+                                    src="images/allergen-fish.png"
+                                    alt
+                                    title
+                                    role="presentation"
+                                />
+                                Fish
+                            </li>
+                            <li>
+                                <img
+                                    src="images/allergen-milk.png"
+                                    alt
+                                    title
+                                    role="presentation"
+                                />
+                                Milk
+                            </li>
+                            <li>
+                                <img
+                                    src="images/allergen-gluten.png"
+                                    alt
+                                    title
+                                    role="presentation"
+                                />
+                                Gluten
+                            </li>
+                        </ul>
+                    </dd>
+
+                    <dt>Equipment</dt>
+                    <dd>
+                        Large mixing bowl, whisk, knife and cutting board,
+                        cheese grater
+                    </dd>
+                </dl>
+            </header>
+            <article>
+                <!-- tabindex="-1" allows elements to receive programmatic focus (e.g. when jumped to via an anchor link),
+                 without placing them in the natural tab order. Unfamiliar to me before this project. -->
+                <p id="servings-section" tabindex="-1">
+                    <label>
+                        Servings:
+                        <input
+                            type="number"
+                            id="servings"
+                            value="4"
+                            data-base="4"
+                            min="1"
+                            max="20"
+                            step="1"
+                        />
+                    </label>
+                    <!-- Scaling is linear and may produce imprecise values for indivisible quantities (e.g. 0.5 garlic cloves).
+                         This is an accepted trade-off — exact scaling is not always meaningful in a recipe context. -->
+                    Change the number to set the serving size and recalculate
+                    the ingredients — currently
+                    <span id="current-servings">4</span> servings (original: 4).
+                </p>
+                <section aria-labelledby="ingredients-heading">
+                    <h2 id="ingredients-heading" tabindex="-1">Ingredients</h2>
+
+                    <section aria-labelledby="dressing-heading">
+                        <h3 id="dressing-heading">Dressing</h3>
+                        <ul>
+                            <li><data value="1">1</data> garlic clove</li>
+                            <li><data value="2">2</data> anchovy fillets</li>
+                            <li>
+                                <data value="1">1</data>
+                                <abbr title="teaspoon">tsp</abbr> Dijon mustard
+                            </li>
+                            <li>
+                                <data value="1">1</data>
+                                <abbr title="tablespoon">tbsp</abbr> lemon juice
+                            </li>
+                            <li>
+                                <data value="1">1</data>
+                                <abbr title="teaspoon">tsp</abbr>
+                                Worcestershire sauce
+                            </li>
+                            <li>
+                                <data value="3">3</data>
+                                <abbr title="tablespoons">tbsp</abbr>
+                                mayonnaise
+                            </li>
+                            <li>
+                                <data value="2">2</data>
+                                <abbr title="tablespoons">tbsp</abbr> olive oil
+                            </li>
+                            <li>Salt and black pepper to taste</li>
+                        </ul>
+                    </section>
+
+                    <section aria-labelledby="salad-heading">
+                        <h3 id="salad-heading">Salad</h3>
+                        <ul>
+                            <li>
+                                <data value="2">2</data> large romaine lettuce
+                                heads
+                            </li>
+                            <li>
+                                <data value="80">80</data>
+                                <abbr title="grams">g</abbr> Parmesan
+                            </li>
+                            <li>
+                                <data value="150">150</data>
+                                <abbr title="grams">g</abbr> croutons
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+
+                <section id="steps" aria-labelledby="steps-heading">
+                    <h2 id="steps-heading" tabindex="-1">Steps</h2>
+                    <p>
+                        <!-- This is my best effort to address the key cognitive aspect I set to myself with this assignment. 
+                         While I'm sure someone has done this before, I haven't seen it implemented -->
+                        Tick off each step as you complete it to keep track of
+                        your progress. Reloading the page clears all ticks.
+                    </p>
+                    <section aria-labelledby="dressing-steps-heading">
+                        <!-- Editing the recipes into logical steps was an effort and took all together hours -->
+                        <h3 id="dressing-steps-heading">Dressing</h3>
+
+                        <ol>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Cut the garlic into very small pieces.
+                                </label>
+                            </li>
+
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Finely chop the anchovies.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Whisk together garlic, anchovies, mustard,
+                                    lemon juice and Worcestershire sauce.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Add the mayonnaise and stir to combine.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Whisk in olive oil until smooth.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Add salt and pepper to taste.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+
+                                    Set the dressing aside while preparing the
+                                    salad.
+                                </label>
+                            </li>
+                        </ol>
+                    </section>
+
+                    <section aria-labelledby="salad-steps-heading">
+                        <h3 id="salad-steps-heading">Salad</h3>
+                        <ol>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Roughly chop the romaine lettuce.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Finely grate the Parmesan.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Place chopped romaine in a large bowl.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Add <data value="3">3</data>
+                                    <abbr title="tablespoons">tbsp</abbr> of
+                                    dressing and mix until leaves are evenly
+                                    coated.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Add croutons and half the Parmesan (<data
+                                        value="40"
+                                        >40</data
+                                    >
+                                    <abbr title="grams">g</abbr>).</label
+                                >
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Gently mix all ingredients in the bowl.
+                                </label>
+                            </li>
+                            <li>
+                                <label>
+                                    <input type="checkbox" />
+                                    Top with remaining Parmesan (<data
+                                        value="40"
+                                        >40</data
+                                    >
+                                    <abbr title="grams">g</abbr>). Serve
+                                    immediately.
+                                </label>
+                            </li>
+                        </ol>
+                    </section>
+                </section>
+            </article>
+        </main>
+    </body>
+</html>
